@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password',
     ];
 
     /**
@@ -36,4 +36,44 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function channels() {
+        return $this->hasMany(Channel::class);
+    }
+
+    public function topics() {
+        return $this->hasMany(Topic::class);
+    }
+
+    public function topic_comment() {
+        return $this->hasMany(TopicComment::class);
+    }
+
+    public function topic_comment_reply() {
+        return $this->hasMany(TopicCommentReply::class);
+    }
+
+    public function channel_subscriptions() {
+        return $this->hasMany(ChannelSubscription::class);
+    }
+
+    public function topic_subscriptions() {
+        return $this->hasMany(TopicSubscription::class);
+    }
+
+    public function topic_comment_subscriptions() {
+        return $this->hasMany(TopicCommentSubscription::class);
+    }
+
+    public function channel_hidings() {
+        return $this->hasMany(ChannelHiding::class);
+    }
+
+    public function topic_hidings() {
+        return $this->hasMany(ChannelHiding::class);
+    }
+
+    public function topic_comment_hidings() {
+        return $this->hasMany(ChannelHiding::class);
+    }
 }
