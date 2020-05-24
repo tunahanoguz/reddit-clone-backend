@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TopicCommentReplyVote extends Model
 {
-    protected $fillable = ['vote', 'user_id', 'topic_id'];
+    protected $fillable = ['vote', 'user_id', 'topic_comment_reply_id'];
 
     public function topic_comment_reply() {
         return $this->belongsTo(TopicCommentReply::class);
