@@ -9,7 +9,7 @@ class Channel extends Model
     protected $fillable = ['name', 'description', 'moderator_id'];
 
     public function moderators() {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class, 'channel_moderator', 'channel_id', 'moderator_id');
     }
 
     public function topics() {
