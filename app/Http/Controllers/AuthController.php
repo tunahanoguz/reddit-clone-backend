@@ -13,6 +13,7 @@ class AuthController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'profile_picture_id' => $request->profile_picture_id
         ]);
 
         $token = auth()->login($user);
@@ -29,6 +30,11 @@ class AuthController extends Controller
         }
 
         return $this->respondWithToken($token);
+    }
+
+    public function refresh() {
+        $newToken = auth()->refresh();
+        return response()->json(["token" => $newToken]);
     }
 
     protected function respondWithToken($token)
