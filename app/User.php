@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username', 'email', 'password', 'profile_picture_id'
     ];
 
     /**
@@ -37,6 +37,10 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function profile_picture() {
+        return $this->hasOne(ProfilePicture::class);
+    }
 
     public function channels() {
         return $this->belongsToMany(Channel::class, 'channel_moderator', 'moderator_id', 'channel_id');
